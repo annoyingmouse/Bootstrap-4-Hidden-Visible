@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bootstrap 4 Hidden & Visible</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <form id="form">
+      <div class="input-group my-3">
+        <label class="input-group-text" for="options">Options</label>
+        <select class="form-select" id="options">
+          <option value="hidden_only_on" selected>Hidden only on</option>
+          <option value="visible_only_on">Visible only on</option>
+          <option value="hidden_on_larger">Hidden on larger</option>
+          <option value="hidden_on_smaller">Hidden on smaller</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="size">Size</label>
+        <select class="form-select" id="size">
+          <option value="xs" selected>xs (< 576px)</option>
+          <option value="sm">sm (> 575px)</option>
+          <option value="md">md (> 767px)</option>
+          <option value="lg">lg (> 991px)</option>
+          <option value="xl">xl (> 1199px)</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <output id="output" name="result" for="options size"></output>
+      </div>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+          crossorigin="anonymous"></script>
+  <script>
+    const values = {
+      hidden_only_on: {
+        xs: 'd-none d-dm-block',
+        sm: 'd-sm-none d-md-block',
+        md: 'd-md-none d-lg-block',
+        lg: 'd-lg-none d-xl-block',
+        xl: 'd-xl-none'
+      },
+      visible_only_on: {
+        xs: 'd-block d-sm-none',
+        sm: 'd-none d-sm-block d-md-none',
+        md: 'd-none d-md-block d-lg-none',
+        lg: 'd-none d-lg-block d-xl-none',
+        xl: 'd-none d-xl-block'
+      },
+      hidden_on_larger: {
+        xs: 'd-none d-sm-block',
+        sm: 'd-none d-md-block',
+        md: 'd-none d-lg-block',
+        lg: 'd-none d-xl-block',
+        xl: 'd-none'
+      },
+      hidden_on_smaller: {
+        xs: 'd-none',
+        sm: 'd-block d-sm-none',
+        md: 'd-block d-md-none',
+        lg: 'd-block d-lg-none',
+        xl: 'd-block d-xl-none'
+      }
+    }
+
+    const calculate = (options, size, output) => {
+      output.value = values[options.value][size.value] || 'unknown'
+    }
+    (()=>{
+      const options = document.getElementById('options')
+      const size = document.getElementById('size')
+      const output = document.getElementById('output')
+      options.addEventListener('change', () => calculate(options, size, output))
+      size.addEventListener('change', () => calculate(options, size, output))
+      calculate(options, size, output)
+    })()
+  </script>
+</body>
+</html>
