@@ -20,18 +20,24 @@
     <p>From <a href="https://medium.com/wdstack/bootstrap-4-hidden-visible-dd969a4c5854">Tom Michew</a>, because I hate Medium pestering me to log in!</p>
     <form id="form">
       <div class="input-group my-3">
-        <label class="input-group-text" for="options">Options</label>
-        <select class="form-select" id="options">
-          <option value="hidden_only_on" selected>Hidden only on</option>
+        <label class="input-group-text"
+               for="options">Options</label>
+        <select class="form-select"
+                id="options">
+          <option value="hidden_only_on"
+                  selected>Hidden only on</option>
           <option value="visible_only_on">Visible only on</option>
           <option value="hidden_on_larger">Hidden on larger</option>
           <option value="hidden_on_smaller">Hidden on smaller</option>
         </select>
       </div>
       <div class="input-group mb-3">
-        <label class="input-group-text" for="size">Size</label>
-        <select class="form-select" id="size">
-          <option value="xs" selected>xs (< 576px)</option>
+        <label class="input-group-text"
+               for="size">Size</label>
+        <select class="form-select"
+                id="size">
+          <option value="xs" 
+                  selected>xs (< 576px)</option>
           <option value="sm">sm (≥ 576px)</option>
           <option value="md">md (≥ 768px)</option>
           <option value="lg">lg (≥ 992px)</option>
@@ -39,7 +45,10 @@
         </select>
       </div>
       <div class="input-group mb-3">
-        <output id="output" name="result" for="options size"></output>
+        <output id="output"
+                name="result"
+                for="options size"
+                class="font-monospace"></output>
       </div>
     </form>
   </div>
@@ -81,7 +90,9 @@
     const calculate = (options, size, output) => {
       output.value = values[options.value][size.value]
     }
+
     (()=>{
+
       const options = document.getElementById('options')
       const size = document.getElementById('size')
       const output = document.getElementById('output')
@@ -96,6 +107,7 @@
         }
       })
       calculate(options, size, output)
+
     })()
   </script>
 </body>
