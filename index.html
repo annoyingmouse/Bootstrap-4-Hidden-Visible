@@ -7,12 +7,17 @@
         rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
         crossorigin="anonymous">
+  <style>
+    #output {
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>Bootstrap 4 Hidden & Visible</h1>
-    <h2>How Responsive Display Works in Bootstrap 4 Beta</h2>
-    <p>From <a href="https://medium.com/wdstack/bootstrap-4-hidden-visible-dd969a4c5854">Tom Michew</a> because I hate Medium pestering me to log in!</p>
+    <h2>How Responsive Display Works in Bootstrap 4</h2>
+    <p>From <a href="https://medium.com/wdstack/bootstrap-4-hidden-visible-dd969a4c5854">Tom Michew</a>, because I hate Medium pestering me to log in!</p>
     <form id="form">
       <div class="input-group my-3">
         <label class="input-group-text" for="options">Options</label>
@@ -27,10 +32,10 @@
         <label class="input-group-text" for="size">Size</label>
         <select class="form-select" id="size">
           <option value="xs" selected>xs (< 576px)</option>
-          <option value="sm">sm (> 575px)</option>
-          <option value="md">md (> 767px)</option>
-          <option value="lg">lg (> 991px)</option>
-          <option value="xl">xl (> 1199px)</option>
+          <option value="sm">sm (≥ 576px)</option>
+          <option value="md">md (≥ 768px)</option>
+          <option value="lg">lg (≥ 992px)</option>
+          <option value="xl">xl (≥ 1200px)</option>
         </select>
       </div>
       <div class="input-group mb-3">
@@ -82,6 +87,14 @@
       const output = document.getElementById('output')
       options.addEventListener('change', () => calculate(options, size, output))
       size.addEventListener('change', () => calculate(options, size, output))
+      output.onclick = () => document.execCommand('copy')
+      output.addEventListener('copy', e => {
+        e.preventDefault()
+        if(e.clipboardData){
+          e.clipboardData.setData('text/plain', e.target.value)
+          console.log(`${e.target.value} copied`)
+        }
+      })
       calculate(options, size, output)
     })()
   </script>
