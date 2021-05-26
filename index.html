@@ -21,7 +21,7 @@
     <form id="form">
       <div class="input-group my-3">
         <label class="input-group-text"
-               for="options">Options</label>
+               for="option">Option</label>
         <select class="form-select"
                 id="options">
           <option value="hidden_only_on"
@@ -87,17 +87,17 @@
       }
     }
 
-    const calculate = (options, size, output) => {
-      output.value = values[options.value][size.value]
+    const calculate = (option, size, output) => {
+      output.value = values[option.value][size.value]
     }
 
     (()=>{
 
-      const options = document.getElementById('options')
+      const option = document.getElementById('options')
       const size = document.getElementById('size')
       const output = document.getElementById('output')
-      options.addEventListener('change', () => calculate(options, size, output))
-      size.addEventListener('change', () => calculate(options, size, output))
+      options.addEventListener('change', () => calculate(option, size, output))
+      size.addEventListener('change', () => calculate(option, size, output))
       output.onclick = () => document.execCommand('copy')
       output.addEventListener('copy', e => {
         e.preventDefault()
@@ -106,7 +106,7 @@
           console.log(`${e.target.value} copied`)
         }
       })
-      calculate(options, size, output)
+      calculate(option, size, output)
 
     })()
   </script>
